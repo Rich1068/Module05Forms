@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Module05Forms.PersonalInfoPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+            <Label Text="FirstName" FontSize="Medium" TextColor="Black"/>
+            <Entry IsEnabled="True" Placeholder="Enter First Name" x:Name="fname">
+            </Entry>
+
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Middle Name Disabled" FontSize="Medium">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference actionSwitch}, Path=IsToggled}" Value="true">
+                            <Setter Property="Text" Value="Middle Name Enabled"/>
+                            <Setter Property="TextColor" Value="Black"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Switch x:Name="actionSwitch" IsToggled="True" HorizontalOptions="Start">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonState">
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor"
+                                        Value="Red"/>
+                                    <Setter Property="OnColor"
+                                        Value="Black"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor"
+                                        Value="Green"/>
+                                    <Setter Property="OnColor"
+                                        Value="Blue"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Switch>
+            </StackLayout>
+            <Entry IsEnabled="False" Placeholder="Enter Middle Name" x:Name="mname">
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry" Binding="{Binding Source={x:Reference actionSwitch}, Path=IsToggled}" Value="true">
+                        <Setter Property="IsEnabled" Value="True"/>
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            
+            
+            <Label Text="LastName" FontSize="Medium" TextColor="Black"/>
+            <Entry IsEnabled="True" Placeholder="Enter Last Name" x:Name="lname">
+            </Entry>
+            
+            
+            <Picker Title="Gender" x:Name="gender"
+                TitleColor="Black">
+                <Picker.ItemsSource >
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                        <x:String>Other</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            
+            
+            <DatePicker DateSelected="OnDateSelected"
+                    x:Name="birthDatePicker"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Age: " FontAttributes="Bold" FontSize="Medium" TextColor="Black"/>
+                <Label x:Name="result" FontAttributes="Bold" FontSize="Medium" TextColor="Black"/>
+            </StackLayout>
+            
+            
+            <Label Text="Address" FontSize="Medium" TextColor="Black"/>
+            <Entry IsEnabled="True" Placeholder="Enter Address" x:Name="address">
+            </Entry>
+
+            
+            <Label Text="Contact Number" FontSize="Medium" TextColor="Black"/>
+            <Entry IsEnabled="True" Placeholder="Enter Contact Number" Keyboard="Telephone" x:Name="contact">
+            </Entry>
+
+            <Label Text="Email" FontSize="Medium" TextColor="Black"/>
+                <Entry IsEnabled="True" Placeholder="Enter Email" Keyboard="Email" x:Name="email">
+            </Entry>
+
+            <Label Text="Username" FontSize="Medium" TextColor="Black"/>
+            <Entry IsEnabled="True" Placeholder="Enter Username" x:Name="uname">
+            </Entry>
+
+            <Label Text="Password" FontSize="Medium" TextColor="Black"/>
+            <Entry IsEnabled="True" Placeholder="Enter Password" IsPassword="True" x:Name="password">
+            </Entry>
+
+            <Label Text="Confirm Password" FontSize="Medium" TextColor="Black"/>
+            <Entry IsEnabled="True" Placeholder="Repeat Password" IsPassword="True" x:Name="cpassword">
+            </Entry>
+            
+            <Button Text="Submit" Clicked="OnSubmitEntry"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
